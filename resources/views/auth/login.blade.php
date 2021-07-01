@@ -4,6 +4,11 @@
 
     <section class="flex justify-center">
         <div class="w-full md:w-5/12 lg:w-3/12 bg-white p-6 rounded-lg">
+            @if (session('status'))
+                <div class="bg-red-500 p-4 mb-6 text-white text-center rounded-lg">
+                    {{ session('status') }}
+                </div>
+            @endif
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="mb-4">
@@ -27,6 +32,10 @@
                             {{ $message }}
                         </div>
                     @enderror
+                </div>
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" name="remember" id="remember" class="mr-2">
+                    <label for="remember">Remember me</label>
                 </div> 
                 <div class="mb-4">
                    <button type="submit" 

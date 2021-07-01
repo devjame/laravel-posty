@@ -10,23 +10,24 @@
 <body class="bg-gray-200">
     <nav class="p-3 bg-white flex justify-between mb-6">
         <div class="flex items-center">
-            <a href="#" class="p-3">Home</a>
-            <a href="#" class="p-3">Dashboard</a>
-            <a href="#" class="p-3">Posts</a>
+            <a href="{{ route('home') }}" class="p-3">Home</a>
+            <a href="{{ route('dashboard') }}" class="p-3">Dashboard</a>
+            <a href="{{ route('posts') }}" class="p-3">Posts</a>
         </div>
         <div class="flex items-center">
             @auth
-                <a href="#" class="p-3">jack</a>
-                <a href="#" class="p-3">Logout</a>
+                <a href="#" class="p-3">{{ auth()->user()->name }}</a>
+                <form action="{{ route('logout') }}" method="POST" class="inline p-3">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
             @endauth
 
             @guest
                 <a href="{{ route('login') }}" class="p-3">Login</a>
                 <a href="{{ route('register') }}" class="p-3">Register</a>
             @endguest
-            
-            
-            
+    
         </div>
     </nav>
     @yield('content')
